@@ -1,18 +1,10 @@
+import { DEFAULT_USER } from "@/constants/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ACCESS_ENUM } from "@/access/accessEnum";
-
-// 默认用户
-const DEFAULT_USER: API.LoginUserVO = {
-  userName: "未登录",
-  userProfile: "暂无简介",
-  userAvatar: "/assets/logo.png",
-  userRole: ACCESS_ENUM.NOT_LOGIN,
-};
 
 /**
  * 登录用户全局状态
  */
-export const loginUserSlice = createSlice({
+export const loginUserSlice: any = createSlice({
   name: "loginUser",
   initialState: DEFAULT_USER,
   reducers: {
