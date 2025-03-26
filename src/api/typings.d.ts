@@ -42,6 +42,8 @@ declare namespace API {
   };
 
   type BaseResponsePageQuestionBank_ = {
+    [x: string]: any;
+    [x: string]: never[];
     code?: number;
     data?: PageQuestionBank_;
     message?: string;
@@ -60,12 +62,14 @@ declare namespace API {
   };
 
   type BaseResponsePageQuestionBankVO_ = {
+    [x: string]: never[];
     code?: number;
     data?: PageQuestionBankVO_;
     message?: string;
   };
 
   type BaseResponsePageQuestionVO_ = {
+    [x: string]: never[];
     code?: number;
     data?: PageQuestionVO_;
     message?: string;
@@ -96,6 +100,7 @@ declare namespace API {
   };
 
   type BaseResponseQuestionBankVO_ = {
+    [x: string]: any;
     code?: number;
     data?: QuestionBankVO;
     message?: string;

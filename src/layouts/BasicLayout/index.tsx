@@ -3,6 +3,7 @@ import {
   GithubFilled,
   LogoutOutlined,
   SearchOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { ProLayout } from "@ant-design/pro-components";
 import { Dropdown, Input, message } from "antd";
@@ -19,38 +20,7 @@ import "./index.css";
 import { DEFAULT_USER } from "@/constants/user";
 import { setLoginUser } from "@/stores/loginUser";
 import { userLogoutUsingPost } from "@/api/userController";
-
-/**
- * 搜索条
- * @constructor
- */
-const SearchInput = () => {
-  return (
-    <div
-      key="SearchOutlined"
-      aria-hidden
-      style={{
-        display: "flex",
-        alignItems: "center",
-        marginInlineEnd: 24,
-      }}
-      onMouseDown={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-      }}
-    >
-      <Input
-        style={{
-          borderRadius: 4,
-          marginInlineEnd: 12,
-        }}
-        prefix={<SearchOutlined />}
-        placeholder="搜索题目"
-        variant="borderless"
-      />
-    </div>
-  );
-};
+import SearchInput from "@/layouts/BasicLayout/components/SearchInput";
 
 interface Props {
   children: React.ReactNode;
@@ -120,15 +90,22 @@ export default function BasicLayout({ children }: Props) {
                 menu={{
                   items: [
                     {
+                      key: "userCenter",
+                      icon: <UserOutlined />,
+                      label: "个人中心",
+                    },
+                    {
                       key: "logout",
                       icon: <LogoutOutlined />,
                       label: "退出登录",
                     },
                   ],
-                  onClick: (event: { key: React.Key }) => {
+                  onClick: async (event: { key: React.Key }) => {
                     const { key } = event;
                     if (key === "logout") {
                       userLogout({});
+                    } else if (key === "userCenter") {
+                      router.push("/user/center");
                     }
                   },
                 }}
@@ -137,6 +114,19 @@ export default function BasicLayout({ children }: Props) {
               </Dropdown>
             );
           },
+        }}
+        actionsRender={(props) => {
+          if (props.isMobile) return [];
+          return [
+            <SearchInput key="search" />,
+            <a
+              key="github"
+              href="https://github.com/LichCarlos"
+              target="_blank"
+            >
+              <GithubFilled key="GithubFilled" />
+            </a>,
+          ];
         }}
         headerTitleRender={(logo, title, _) => {
           return (
