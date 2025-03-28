@@ -11,6 +11,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListInt_ = {
+    code?: number;
+    data?: number[];
+    message?: string;
+  };
+
   type BaseResponseLoginUserVO_ = {
     code?: number;
     data?: LoginUserVO;
@@ -42,8 +48,6 @@ declare namespace API {
   };
 
   type BaseResponsePageQuestionBank_ = {
-    [x: string]: any;
-    [x: string]: never[];
     code?: number;
     data?: PageQuestionBank_;
     message?: string;
@@ -62,14 +66,12 @@ declare namespace API {
   };
 
   type BaseResponsePageQuestionBankVO_ = {
-    [x: string]: never[];
     code?: number;
     data?: PageQuestionBankVO_;
     message?: string;
   };
 
   type BaseResponsePageQuestionVO_ = {
-    [x: string]: never[];
     code?: number;
     data?: PageQuestionVO_;
     message?: string;
@@ -100,7 +102,6 @@ declare namespace API {
   };
 
   type BaseResponseQuestionBankVO_ = {
-    [x: string]: any;
     code?: number;
     data?: QuestionBankVO;
     message?: string;
@@ -160,6 +161,7 @@ declare namespace API {
     description?: string;
     id?: number;
     needQueryQuestion?: boolean;
+    needQueryQuestionList?: boolean;
     notId?: number;
     pageSize?: number;
     picture?: string;
@@ -178,6 +180,11 @@ declare namespace API {
   type getUserByIdUsingGETParams = {
     /** id */
     id?: number;
+  };
+
+  type getUserSignInRecordUsingGETParams = {
+    /** year */
+    year?: number;
   };
 
   type getUserVOByIdUsingGETParams = {
@@ -461,6 +468,7 @@ declare namespace API {
     description?: string;
     id?: number;
     needQueryQuestion?: boolean;
+    needQueryQuestionList?: boolean;
     notId?: number;
     pageSize?: number;
     picture?: string;
@@ -531,7 +539,7 @@ declare namespace API {
     description?: string;
     id?: number;
     picture?: string;
-    questionPage?: PageQuestion_;
+    questionPage?: PageQuestionVO_;
     title?: string;
     updateTime?: string;
     user?: UserVO;
