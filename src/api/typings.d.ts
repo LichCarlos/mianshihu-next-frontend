@@ -493,6 +493,16 @@ declare namespace API {
     questionId?: number;
   };
 
+  type QuestionBankQuestionBatchAddRequest = {
+    questionBankId?: number;
+    questionIdList?: number[];
+  };
+
+  type QuestionBankQuestionBatchRemoveRequest = {
+    questionBankId?: number;
+    questionIdList?: number[];
+  };
+
   type QuestionBankQuestionQueryRequest = {
     current?: number;
     id?: number;
@@ -546,6 +556,11 @@ declare namespace API {
     userId?: number;
   };
 
+  type QuestionBatchDeleteRequest = {
+    questionIdList?: number[];
+    title?: string;
+  };
+
   type QuestionEditRequest = {
     answer?: string;
     content?: string;
@@ -596,6 +611,7 @@ declare namespace API {
 
   type User = {
     createTime?: string;
+    editTime?: string;
     id?: number;
     isDelete?: number;
     mpOpenId?: string;
