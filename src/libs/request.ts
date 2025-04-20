@@ -3,7 +3,7 @@ import axios from "axios";
 // 创建 Axios 示例
 const myAxios = axios.create({
   baseURL: "http://localhost:8101",
-  timeout: 10000,
+  timeout: 100000,
   withCredentials: true,
 });
 
@@ -45,6 +45,6 @@ myAxios.interceptors.response.use(
     // 处理响应错误
     return Promise.reject(error);
   },
-    );
+);
 
 export default myAxios;

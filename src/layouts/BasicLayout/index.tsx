@@ -2,12 +2,11 @@
 import {
   GithubFilled,
   LogoutOutlined,
-  SearchOutlined,
   UserOutlined
 } from "@ant-design/icons";
 import { ProLayout } from "@ant-design/pro-components";
-import { Dropdown, Input, message } from "antd";
-import React, { useState } from "react";
+import { Dropdown, message } from "antd";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -26,32 +25,26 @@ interface Props {
   children: React.ReactNode;
 }
 
-/**
- * 全局通用布局
- * @param children
- * @constructor
- */
 export default function BasicLayout({ children }: Props) {
   const pathname = usePathname();
-  // 当前登录用户
   const loginUser: any = useSelector((state: RootState) => state.loginUser);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const userLogout = async (values: any) => {
+
+  const userLogout = async () => {
     try {
       await userLogoutUsingPost();
       message.success("退出登录成功！");
-      // 保存用户登录态
       dispatch(setLoginUser(DEFAULT_USER));
       router.push("/user/login");
-
     } catch (e: any) {
       message.error('登录失败，' + e.message);
     }
   };
 
-  // const [text, setText] = useState<string>('');
-
+  useEffect(() => {
+    console.log('Client loginUser:', loginUser);
+  }, [loginUser]);
 
   return (
     <div
@@ -72,19 +65,12 @@ export default function BasicLayout({ children }: Props) {
             alt="面试刷题网站 - 面试狐"
           />
         }
-        location={{
-          pathname,
-        }}
+        location={{ pathname }}
         avatarProps={{
           src: loginUser.userAvatar || "/assets/logo.png",
           size: "small",
           title: loginUser.userName || "面试狐",
           render: (props, dom) => {
-            if (!loginUser.id) {
-              return <div onClick={() => {
-                router.push("/user/login");
-              }}>{dom}</div>;
-            }
             return (
               <Dropdown
                 menu={{
@@ -100,10 +86,10 @@ export default function BasicLayout({ children }: Props) {
                       label: "退出登录",
                     },
                   ],
-                  onClick: async (event: { key: React.Key }) => {
+                  onClick: async (event) => {
                     const { key } = event;
                     if (key === "logout") {
-                      userLogout({});
+                      userLogout();
                     } else if (key === "userCenter") {
                       router.push("/user/center");
                     }
@@ -119,45 +105,22 @@ export default function BasicLayout({ children }: Props) {
           if (props.isMobile) return [];
           return [
             <SearchInput key="search" />,
-            <a
-              key="github"
-              href="https://github.com/LichCarlos"
-              target="_blank"
-            >
-              <GithubFilled key="GithubFilled" />
+            <a key="github" href="https://github.com/LichCarlos" target="_blank">
+              <GithubFilled />
             </a>,
           ];
         }}
-        headerTitleRender={(logo, title, _) => {
-          return (
-            <a>
-              {logo}
-              {title}
-            </a>
-          );
-        }}
-        // 渲染底部栏
-        footerRender={() => {
-          return <GlobalFooter />;
-        }}
-        onMenuHeaderClick={(e) => console.log(e)}
-        // 定义有哪些菜单
-        menuDataRender={() => {
-          return getAccessibleMenus(loginUser, menus);
-        }}
-        // 定义了菜单项如何渲染
+        footerRender={() => <GlobalFooter />}
+        menuDataRender={() => getAccessibleMenus(loginUser, menus)}
         menuItemRender={(item, dom) => (
           <Link href={item.path || "/"} target={item.target}>
             {dom}
           </Link>
         )}
       >
-
-        {/* <MdEditor value={text} onChange={setText} />
-        <MdViewer value={text} /> */}
         {children}
       </ProLayout>
+
     </div>
   );
 }
-

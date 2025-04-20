@@ -16,11 +16,19 @@ export const menus = [
     path: "/questions",
     name: "题目",
   },
-  // {
-  //   name: "面试鸭",
-  //   path: "https://mianshiya.com",
-  //   target: "_blank",
-  // },
+  {
+    path: "/mockInterview/add",
+    name: "AI 模拟面试",
+    target: "_blank",
+  },
+
+  {
+    name: "个人网站",
+    path: "https://lichcarlos.top", // 确保添加了完整的 URL
+    target: "_blank", // 在新标签页中打开
+    rel: "noopener noreferrer" // 为了安全性和性能，建议添加此属性
+  },
+
   {
     path: "/admin",
     name: "管理",
@@ -42,7 +50,13 @@ export const menus = [
         name: "题目管理",
         access: ACCESS_ENUM.ADMIN,
       },
+
     ],
+  },
+  {
+    path: "/admin/question/ai",
+    name: "ai生成题目",
+    access: ACCESS_ENUM.ADMIN
   },
 ] as MenuDataItem[];
 

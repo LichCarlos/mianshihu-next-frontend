@@ -17,6 +17,24 @@ export async function addQuestionUsingPost(
   });
 }
 
+/** aiGenerateQuestions POST /api/question/ai/generate/question */
+export async function aiGenerateQuestionsUsingPost(
+  body: API.QuestionAIGenerateRequest,
+  options?: { [key: string]: any }
+) {
+  return request<API.BaseResponseBoolean_>(
+    "/api/question/ai/generate/question",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
 /** deleteQuestion POST /api/question/delete */
 export async function deleteQuestionUsingPost(
   body: API.DeleteRequest,
