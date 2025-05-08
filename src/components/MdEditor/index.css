@@ -1,3 +1,100 @@
-.bytemd-toolbar-icon.bytemd-tippy.bytemd-tippy-right:last-child {
-  display: none;
+.markdown-body {
+  margin: 0;
+  color: var(--fgColor-default);
+  background-color: var(--bgColor-default);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body h1 {
+  margin: .67em 0;
+  font-weight: var(--base-text-weight-semibold);
+  font-size: 2em;
+  border-bottom: 1px solid var(--borderColor-muted);
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--borderColor-muted);
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.markdown-body strong {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.markdown-body a {
+  color: var(--fgColor-accent);
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2em;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: var(--fgColor-muted);
+  border-left: .25em solid var(--borderColor-default);
+}
+
+.markdown-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 6px 13px;
+  border: 1px solid var(--borderColor-default);
+}
+
+
+/* 代码样式 */
+.markdown-body code {
+  font-family: monospace;
+  background-color: #e8f5e9;
+  /* 柔和的绿色背景 */
+  border-radius: 6px;
+  color: #2e7d32;
+  /* 深绿色文本颜色 */
+}
+
+.markdown-body pre {
+  padding: 16px;
+  /* 固定内边距 */
+  overflow: auto;
+  background-color: #f1f8e9;
+  /* 柔和的浅绿色背景 */
+  border-radius: 6px;
+  color: #2e7d32;
+  /* 深绿色文本颜色 */
+}
+
+/* 添加高亮样式 */
+.markdown-body .highlight {
+  background-color: #fffde7;
+  /* 柔和的黄色高亮背景 */
+  border-left: 4px solid #ffeb3b;
+  /* 明亮的黄色高亮边框 */
 }

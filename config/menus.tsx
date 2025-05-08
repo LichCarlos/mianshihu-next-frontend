@@ -22,12 +22,7 @@ export const menus = [
     target: "_blank",
   },
 
-  {
-    name: "个人网站",
-    path: "https://lichcarlos.top", // 确保添加了完整的 URL
-    target: "_blank", // 在新标签页中打开
-    rel: "noopener noreferrer" // 为了安全性和性能，建议添加此属性
-  },
+
 
   {
     path: "/admin",
@@ -57,6 +52,11 @@ export const menus = [
     path: "/admin/question/ai",
     name: "ai生成题目",
     access: ACCESS_ENUM.ADMIN
+  }, {
+    name: "个人网站",
+    path: "https://lichcarlos.top", // 确保添加了完整的 URL
+    target: "_blank", // 在新标签页中打开
+    rel: "noopener noreferrer" // 为了安全性和性能，建议添加此属性
   },
 ] as MenuDataItem[];
 
