@@ -2,7 +2,8 @@
 import {
   GithubFilled,
   LogoutOutlined,
-  UserOutlined
+  UserOutlined,
+  LoginOutlined // 引入登录图标
 } from "@ant-design/icons";
 import { ProLayout } from "@ant-design/pro-components";
 import { Dropdown, message } from "antd";
@@ -41,6 +42,11 @@ export default function BasicLayout({ children }: Props) {
       message.error('登录失败，' + e.message);
     }
   };
+  const redirectToLogin = () => {
+    if (!loginUser || loginUser === DEFAULT_USER) {
+      router.push("/user/login");
+    }
+  };
 
   useEffect(() => {
     console.log('Client loginUser:', loginUser);
@@ -71,34 +77,55 @@ export default function BasicLayout({ children }: Props) {
           size: "small",
           title: loginUser.userName || "面试狐",
           render: (props, dom) => {
-            return (
-              <Dropdown
-                menu={{
-                  items: [
-                    {
-                      key: "userCenter",
-                      icon: <UserOutlined />,
-                      label: "个人中心",
+            if (!loginUser || loginUser === DEFAULT_USER) {
+              // 如果用户未登录，显示登录按钮
+              return (
+                <Dropdown
+                  menu={{
+                    items: [
+                      {
+                        key: "login",
+                        icon: <LoginOutlined />,
+                        label: "登录",
+                        onClick: redirectToLogin,
+                      },
+                    ],
+                  }}
+                >
+                  {dom}
+                </Dropdown>
+              );
+            } else {
+              // 用户已登录，显示个人中心和退出登录选项
+              return (
+                <Dropdown
+                  menu={{
+                    items: [
+                      {
+                        key: "userCenter",
+                        icon: <UserOutlined />,
+                        label: "个人中心",
+                      },
+                      {
+                        key: "logout",
+                        icon: <LogoutOutlined />,
+                        label: "退出登录",
+                      },
+                    ],
+                    onClick: async (event) => {
+                      const { key } = event;
+                      if (key === "logout") {
+                        userLogout();
+                      } else if (key === "userCenter") {
+                        router.push("/user/center");
+                      }
                     },
-                    {
-                      key: "logout",
-                      icon: <LogoutOutlined />,
-                      label: "退出登录",
-                    },
-                  ],
-                  onClick: async (event) => {
-                    const { key } = event;
-                    if (key === "logout") {
-                      userLogout();
-                    } else if (key === "userCenter") {
-                      router.push("/user/center");
-                    }
-                  },
-                }}
-              >
-                {dom}
-              </Dropdown>
-            );
+                  }}
+                >
+                  {dom}
+                </Dropdown>
+              );
+            }
           },
         }}
         actionsRender={(props) => {

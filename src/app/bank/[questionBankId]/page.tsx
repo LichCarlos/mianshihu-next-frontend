@@ -19,7 +19,6 @@ export default async function BankPage({ params }) {
     const res = await getQuestionBankVoByIdUsingGet({
       id: questionBankId,
       needQueryQuestionList: true,
-      // 可以自行扩展为分页实现
       pageSize: 200,
     });
     bank = res.data;

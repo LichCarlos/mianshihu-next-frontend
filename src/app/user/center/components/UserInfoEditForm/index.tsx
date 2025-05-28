@@ -3,7 +3,7 @@ import { editUserUsingPost } from "@/api/userController";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/stores";
-import loginUser, { setLoginUser } from "@/stores/loginUser";
+import { setLoginUser } from "@/stores/loginUser";
 
 interface Props {
   user: API.LoginUserVO;

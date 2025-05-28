@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import loginUser from './loginUser'
+import { loginUserSlice } from './loginUser'
 
 const store = configureStore({
   reducer: {
-    loginUser
+    loginUser: loginUserSlice.reducer,//收到action后，根据action的type去执行操作，完成数据修改
   },
 })
 

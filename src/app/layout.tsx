@@ -1,5 +1,5 @@
 "use client"
-
+import { ClientSideSuspense } from "@liveblocks/react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import { Provider, useDispatch } from "react-redux";
@@ -10,8 +10,8 @@ import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
 import { ACCESS_ENUM } from "@/access/accessEnum";
 import { setLoginUser } from "@/stores/loginUser";
-
-
+import { Suspense } from "react";
+import LoadingIndicator from '@/components/LoadingIndicator';
 /**
  * 全局逻辑初始化
  * @param param0 
@@ -57,23 +57,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
-
-
-
   return (
     <html lang="zh">
       <body>
-        <AntdRegistry>
-          <Provider store={store}>
-            <InitLayout>
-              <BasicLayout>
-                <AccessLayout>{children}</AccessLayout>
-              </BasicLayout>
-            </InitLayout>
-          </Provider>
-        </AntdRegistry>
+        <ClientSideSuspense fallback={<LoadingIndicator />}>
+          <AntdRegistry>
+            <Provider store={store}>
+              <InitLayout>
+                <BasicLayout>
+                  <AccessLayout>{children}</AccessLayout>
+                </BasicLayout>
+              </InitLayout>
+            </Provider>
+          </AntdRegistry>
+        </ClientSideSuspense>
       </body>
     </html>
   );

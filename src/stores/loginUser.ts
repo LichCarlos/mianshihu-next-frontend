@@ -16,7 +16,8 @@ export const loginUserSlice: any = createSlice({
   },
 });
 
-// 修改状态
-export const { setLoginUser } = loginUserSlice.actions;
 
-export default loginUserSlice.reducer;
+// 修改状态
+export const { setLoginUser } = loginUserSlice.actions;//setLoginUser是生成action对象的
+
+export default loginUserSlice;

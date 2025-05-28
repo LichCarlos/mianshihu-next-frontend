@@ -17,6 +17,8 @@
     "@bytemd/plugin-gfm": "^1.22.0",
     "@bytemd/plugin-highlight": "^1.22.0",
     "@bytemd/react": "^1.22.0",
+    "@liveblocks/client": "^2.24.3",
+    "@liveblocks/react": "^2.24.3",
     "@reduxjs/toolkit": "^2.6.1",
     "antd": "^5.24.4",
     "axios": "^1.8.4",
