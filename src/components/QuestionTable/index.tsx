@@ -70,6 +70,7 @@ const QuestionTable: React.FC = (props: Props) => {
           initialValues: defaultSearchParams,
         }}
         dataSource={questionList}
+        rowKey="id"
         pagination={
           {
             pageSize: 12,

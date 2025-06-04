@@ -92,9 +92,9 @@ export default function InterviewRoomPage({ params }) {
 
   // 发送消息
   const sendMessage = async () => {
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim()) return;//判断内容是否为空
     await handleEvent("chat", inputMessage);
-    setInputMessage("");
+    setInputMessage("");//清空输入框
   };
 
   return (
@@ -148,6 +148,7 @@ export default function InterviewRoomPage({ params }) {
           )}
         />
       </Card>
+
 
       {/* 输入区域 */}
       <div className="input-area">

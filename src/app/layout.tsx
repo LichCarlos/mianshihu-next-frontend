@@ -8,10 +8,10 @@ import { useCallback, useEffect } from "react";
 import AccessLayout from "@/access/AccessLayout";
 import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
-import { ACCESS_ENUM } from "@/access/accessEnum";
+
 import { setLoginUser } from "@/stores/loginUser";
-import { Suspense } from "react";
 import LoadingIndicator from '@/components/LoadingIndicator';
+
 /**
  * 全局逻辑初始化
  * @param param0 
@@ -31,16 +31,8 @@ const InitLayout: React.FC<
       // 更新全局用户状态
       dispatch(setLoginUser(res.data))
     } else {
-      // 仅用于测试
-      // setTimeout(() => {
-      //   const testUser = {
-      //     userName: "测试登录",
-      //     id: 1,
-      //     userAvatar: "../../../public/images/logo.png",
-      //     userRole: ACCESS_ENUM.ADMIN
-      //   };
-      //   dispatch(setLoginUser(testUser));
-      // }, 3000);
+
+      console.log("未登录");
     }
   }, []);
 

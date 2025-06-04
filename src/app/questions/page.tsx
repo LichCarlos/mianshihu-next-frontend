@@ -1,7 +1,7 @@
 "use server";
 import Title from "antd/es/typography/Title";
 import { message } from "antd";
-import { searchQuestionVoByPageUsingPost } from "@/api/questionController";
+import { listQuestionVoByPageUsingPost } from "@/api/questionController";
 import QuestionTable from "@/components/QuestionTable";
 import "./index.css";
 
@@ -11,13 +11,13 @@ import "./index.css";
  */
 export default async function QuestionsPage({ searchParams }) {
   // 获取 url 的查询参数
-  const { q: searchText } = searchParams;
+  const { q: searchText } = await searchParams;
   // 题目列表和总数
-  let questionList = [];
-  let total = 0;
+  let questionList: Array<any> = [];
+  let total: number = 0;
 
   try {
-    const res = await searchQuestionVoByPageUsingPost({
+    const res = await listQuestionVoByPageUsingPost({
       searchText,
       pageSize: 12,
       sortField: "createTime",

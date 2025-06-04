@@ -17,14 +17,6 @@ export const menus = [
     name: "题目",
   },
   {
-    path: "/mockInterview/add",
-    name: "AI 模拟面试",
-    target: "_blank",
-  },
-
-
-
-  {
     path: "/admin",
     name: "管理",
     icon: <CrownOutlined />,
@@ -52,12 +44,24 @@ export const menus = [
     path: "/admin/question/ai",
     name: "ai生成题目",
     access: ACCESS_ENUM.ADMIN
-  }, {
+  },
+  {
+    path: "/mockInterview/add",
+    name: "AI 模拟面试",
+    target: "_blank",
+  },
+  {
     name: "个人网站",
     path: "https://lichcarlos.top", // 确保添加了完整的 URL
     target: "_blank", // 在新标签页中打开
     rel: "noopener noreferrer" // 为了安全性和性能，建议添加此属性
   },
+  {
+    name: "博客",
+    path: "https://lichcarlos-blog.netlify.app/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }
 ] as MenuDataItem[];
 
 // 导出
